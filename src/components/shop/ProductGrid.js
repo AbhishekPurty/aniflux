@@ -6,7 +6,7 @@ export default function ProductGrid({ products }) {
   if (!products || products.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-500 text-lg">No products found.</p>
+        <p className="text-gray-400 text-lg">No products found.</p>
       </div>
     );
   }
@@ -19,4 +19,3 @@ export default function ProductGrid({ products }) {
     </div>
   );
 }
-

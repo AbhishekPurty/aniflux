@@ -35,18 +35,18 @@ export default function BlogDashboardPage() {
   const getStatusColor = (status) => {
     switch (status) {
       case 'published':
-        return 'bg-green-100 text-green-800';
+        return 'bg-anime-cyan text-black';
       case 'draft':
-        return 'bg-yellow-100 text-yellow-800';
+        return 'bg-anime-yellow text-black';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-anime-gunmetal text-gray-300';
     }
   };
 
   if (isLoading) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <p className="text-center text-gray-600">Loading...</p>
+        <p className="text-center text-gray-400">Loading...</p>
       </div>
     );
   }
@@ -54,16 +54,16 @@ export default function BlogDashboardPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Blog Dashboard</h1>
+        <h1 className="text-3xl font-bold text-white font-heading">Blog Dashboard</h1>
         <Link href="/admin/blog/create">
           <Button variant="primary">Create New Post</Button>
         </Link>
       </div>
       
       {posts.length === 0 ? (
-        <Card>
+        <Card variant="gunmetal">
           <div className="text-center py-12">
-            <p className="text-gray-600 mb-4">You haven't created any blog posts yet.</p>
+            <p className="text-gray-400 mb-4">You haven't created any blog posts yet.</p>
             <Link href="/admin/blog/create">
               <Button variant="primary">Create Your First Post</Button>
             </Link>
@@ -72,21 +72,21 @@ export default function BlogDashboardPage() {
       ) : (
         <div className="space-y-4">
           {posts.map((post) => (
-            <Card key={post._id}>
+            <Card key={post._id} variant="gunmetal">
               <div className="flex items-center justify-between">
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold mb-2">{post.title}</h3>
-                  <div className="flex items-center gap-4 text-sm text-gray-600">
+                  <h3 className="text-lg font-semibold mb-2 text-white font-heading">{post.title}</h3>
+                  <div className="flex items-center gap-4 text-sm text-gray-400">
                     <span>
                       {post.publishedAt
                         ? format(new Date(post.publishedAt), 'MMM d, yyyy')
                         : format(new Date(post.createdAt), 'MMM d, yyyy')}
                     </span>
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(post.status)}`}>
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium font-heading ${getStatusColor(post.status)}`}>
                       {post.status}
                     </span>
                     {post.category && (
-                      <span className="text-blue-600">{post.category}</span>
+                      <span className="text-anime-cyan">{post.category}</span>
                     )}
                   </div>
                 </div>
@@ -108,4 +108,3 @@ export default function BlogDashboardPage() {
     </div>
   );
 }
-

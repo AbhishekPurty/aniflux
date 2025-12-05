@@ -8,6 +8,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Anime theme colors
+        'anime-black': '#000000',
+        'anime-orange': '#FF6B00',
+        'anime-blue': '#0033A0',
+        'anime-cyan': '#00E9FF',
+        'anime-gunmetal': '#1A1A1A',
+        'anime-red': '#FF1E56',
+        'anime-yellow': '#FFD60A',
+        // Legacy compatibility
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: {
@@ -19,8 +28,10 @@ module.exports = {
         muted: "var(--muted)",
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-geist-mono)", "monospace"],
+        'orbitron': ['Orbitron', 'sans-serif'],
+        'roboto': ['Roboto', 'sans-serif'],
+        sans: ['Roboto', 'system-ui', 'sans-serif'],
+        heading: ['Orbitron', 'sans-serif'],
       },
       spacing: {
         '18': '4.5rem',
@@ -32,6 +43,8 @@ module.exports = {
       },
       boxShadow: {
         'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
+        'neon-orange': '0 0 10px rgba(255, 107, 0, 0.5), 0 0 20px rgba(255, 107, 0, 0.3)',
+        'neon-cyan': '0 0 10px rgba(0, 233, 255, 0.5), 0 0 20px rgba(0, 233, 255, 0.3)',
       },
     },
   },

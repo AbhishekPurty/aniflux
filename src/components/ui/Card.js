@@ -7,6 +7,7 @@ export default function Card({
   className,
   padding = 'default',
   hover = false,
+  variant = 'default', // 'default', 'gunmetal', 'white'
   ...props 
 }) {
   const paddingStyles = {
@@ -16,12 +17,19 @@ export default function Card({
     lg: 'p-8',
   };
 
+  const variantStyles = {
+    default: 'bg-anime-gunmetal border border-anime-gunmetal',
+    gunmetal: 'bg-anime-gunmetal border border-anime-gunmetal',
+    white: 'bg-white text-black border border-gray-200',
+  };
+
   return (
     <div
       className={cn(
-        'bg-white rounded-lg shadow-md border border-gray-200',
+        'rounded-lg shadow-md',
+        variantStyles[variant],
         paddingStyles[padding],
-        hover && 'hover:shadow-lg transition-shadow duration-200',
+        hover && 'hover:shadow-neon-orange transition-shadow duration-200',
         className
       )}
       {...props}

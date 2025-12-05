@@ -34,32 +34,32 @@ export default function OrdersPage() {
   const getStatusColor = (status) => {
     switch (status) {
       case 'completed':
-        return 'bg-green-100 text-green-800';
+        return 'bg-anime-cyan text-black';
       case 'pending':
-        return 'bg-yellow-100 text-yellow-800';
+        return 'bg-anime-yellow text-black';
       case 'failed':
-        return 'bg-red-100 text-red-800';
+        return 'bg-anime-red text-white';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-anime-gunmetal text-gray-300';
     }
   };
 
   if (isLoading) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <p className="text-center text-gray-600">Loading orders...</p>
+        <p className="text-center text-gray-400">Loading orders...</p>
       </div>
     );
   }
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">My Orders</h1>
+      <h1 className="text-3xl font-bold text-white mb-8 font-heading">My Orders</h1>
       
       {orders.length === 0 ? (
-        <Card>
+        <Card variant="gunmetal">
           <div className="text-center py-12">
-            <p className="text-gray-600 mb-4">You haven't placed any orders yet.</p>
+            <p className="text-gray-400 mb-4">You haven't placed any orders yet.</p>
             <Link href="/products">
               <Button variant="primary">Start Shopping</Button>
             </Link>
@@ -68,13 +68,13 @@ export default function OrdersPage() {
       ) : (
         <div className="space-y-4">
           {orders.map((order) => (
-            <Card key={order._id}>
+            <Card key={order._id} variant="gunmetal">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h3 className="text-lg font-semibold">
+                  <h3 className="text-lg font-semibold text-white font-heading">
                     Order #{order._id.slice(-8).toUpperCase()}
                   </h3>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-400">
                     {new Date(order.createdAt).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long',
@@ -83,18 +83,18 @@ export default function OrdersPage() {
                   </p>
                 </div>
                 <div className="text-right">
-                  <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(order.status)}`}>
+                  <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium font-heading ${getStatusColor(order.status)}`}>
                     {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
                   </span>
-                  <p className="text-lg font-bold mt-2">${order.total?.toFixed(2)}</p>
+                  <p className="text-lg font-bold mt-2 text-anime-cyan font-heading">${order.total?.toFixed(2)}</p>
                 </div>
               </div>
               
-              <div className="border-t border-gray-200 pt-4">
-                <h4 className="font-medium mb-2">Items:</h4>
+              <div className="border-t border-anime-gunmetal pt-4">
+                <h4 className="font-medium mb-2 text-white">Items:</h4>
                 <ul className="space-y-1">
                   {order.items?.map((item, index) => (
-                    <li key={index} className="text-sm text-gray-600">
+                    <li key={index} className="text-sm text-gray-300">
                       {item.quantity}x {item.productId?.name || 'Product'} - ${item.price?.toFixed(2)} each
                     </li>
                   ))}
@@ -115,4 +115,3 @@ export default function OrdersPage() {
     </div>
   );
 }
-

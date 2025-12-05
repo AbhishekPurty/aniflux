@@ -34,11 +34,10 @@ export default async function EditBlogPostPage({ params }) {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Edit Blog Post</h1>
-      <Card>
+      <h1 className="text-3xl font-bold text-white mb-8 font-heading">Edit Blog Post</h1>
+      <Card variant="gunmetal">
         <BlogPostForm initialData={post} isEditing={true} />
       </Card>
     </div>
   );
 }
-
