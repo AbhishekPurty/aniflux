@@ -1,8 +1,13 @@
-import clientPromise from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
 
 const dbName = 'aniflux';
 const collectionName = 'blogposts';
+
+// Lazy import to avoid evaluation errors
+async function getClient() {
+  const { default: clientPromise } = await import('@/lib/mongodb');
+  return clientPromise;
+}
 
 /**
  * Get blog posts
@@ -12,6 +17,7 @@ const collectionName = 'blogposts';
  */
 export async function getBlogPosts(status = 'published', filters = {}) {
   try {
+    const clientPromise = await getClient();
     const client = await clientPromise;
     const db = client.db(dbName);
     
@@ -39,6 +45,7 @@ export async function getBlogPosts(status = 'published', filters = {}) {
  */
 export async function getBlogPostBySlug(slug) {
   try {
+    const clientPromise = await getClient();
     const client = await clientPromise;
     const db = client.db(dbName);
     const post = await db.collection(collectionName).findOne({ slug, status: 'published' });
@@ -50,12 +57,31 @@ export async function getBlogPostBySlug(slug) {
 }
 
 /**
+ * Get blog post by ID
+ * @param {string} id - Blog post ID
+ * @returns {Promise<Object|null>} Blog post object or null
+ */
+export async function getBlogPostById(id) {
+  try {
+    const clientPromise = await getClient();
+    const client = await clientPromise;
+    const db = client.db(dbName);
+    const post = await db.collection(collectionName).findOne({ _id: new ObjectId(id) });
+    return post;
+  } catch (error) {
+    console.error('Error getting blog post by ID:', error);
+    throw error;
+  }
+}
+
+/**
  * Create a new blog post
  * @param {Object} postData - Blog post data
  * @returns {Promise<Object>} Insert result
  */
 export async function createBlogPost(postData) {
   try {
+    const clientPromise = await getClient();
     const client = await clientPromise;
     const db = client.db(dbName);
     
@@ -88,6 +114,7 @@ export async function createBlogPost(postData) {
  */
 export async function updateBlogPost(id, updateData) {
   try {
+    const clientPromise = await getClient();
     const client = await clientPromise;
     const db = client.db(dbName);
     
@@ -116,6 +143,7 @@ export async function updateBlogPost(id, updateData) {
  */
 export async function deleteBlogPost(id) {
   try {
+    const clientPromise = await getClient();
     const client = await clientPromise;
     const db = client.db(dbName);
     const result = await db.collection(collectionName).deleteOne({ _id: new ObjectId(id) });

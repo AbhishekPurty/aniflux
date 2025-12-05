@@ -1,8 +1,13 @@
-import clientPromise from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
 
 const dbName = 'aniflux';
 const collectionName = 'products';
+
+// Lazy import to avoid evaluation errors
+async function getClient() {
+  const { default: clientPromise } = await import('@/lib/mongodb');
+  return clientPromise;
+}
 
 /**
  * Get all products
@@ -11,6 +16,7 @@ const collectionName = 'products';
  */
 export async function getProducts(filters = {}) {
   try {
+    const clientPromise = await getClient();
     const client = await clientPromise;
     const db = client.db(dbName);
     const products = await db.collection(collectionName).find(filters).toArray();
@@ -28,6 +34,7 @@ export async function getProducts(filters = {}) {
  */
 export async function getProductById(id) {
   try {
+    const clientPromise = await getClient();
     const client = await clientPromise;
     const db = client.db(dbName);
     const product = await db.collection(collectionName).findOne({ _id: new ObjectId(id) });
@@ -45,6 +52,7 @@ export async function getProductById(id) {
  */
 export async function createProduct(productData) {
   try {
+    const clientPromise = await getClient();
     const client = await clientPromise;
     const db = client.db(dbName);
     
@@ -73,6 +81,7 @@ export async function createProduct(productData) {
  */
 export async function updateProduct(id, updateData) {
   try {
+    const clientPromise = await getClient();
     const client = await clientPromise;
     const db = client.db(dbName);
     
@@ -95,6 +104,7 @@ export async function updateProduct(id, updateData) {
  */
 export async function deleteProduct(id) {
   try {
+    const clientPromise = await getClient();
     const client = await clientPromise;
     const db = client.db(dbName);
     const result = await db.collection(collectionName).deleteOne({ _id: new ObjectId(id) });

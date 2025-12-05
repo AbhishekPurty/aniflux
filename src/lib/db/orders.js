@@ -1,8 +1,13 @@
-import clientPromise from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
 
 const dbName = 'aniflux';
 const collectionName = 'orders';
+
+// Lazy import to avoid evaluation errors
+async function getClient() {
+  const { default: clientPromise } = await import('@/lib/mongodb');
+  return clientPromise;
+}
 
 /**
  * Create a new order
@@ -11,6 +16,7 @@ const collectionName = 'orders';
  */
 export async function createOrder(orderData) {
   try {
+    const clientPromise = await getClient();
     const client = await clientPromise;
     const db = client.db(dbName);
     
@@ -41,6 +47,7 @@ export async function createOrder(orderData) {
  */
 export async function getUserOrders(userId) {
   try {
+    const clientPromise = await getClient();
     const client = await clientPromise;
     const db = client.db(dbName);
     const orders = await db.collection(collectionName)
@@ -61,6 +68,7 @@ export async function getUserOrders(userId) {
  */
 export async function getOrderById(id) {
   try {
+    const clientPromise = await getClient();
     const client = await clientPromise;
     const db = client.db(dbName);
     const order = await db.collection(collectionName).findOne({ _id: new ObjectId(id) });
@@ -79,6 +87,7 @@ export async function getOrderById(id) {
  */
 export async function updateOrderStatus(id, status) {
   try {
+    const clientPromise = await getClient();
     const client = await clientPromise;
     const db = client.db(dbName);
     

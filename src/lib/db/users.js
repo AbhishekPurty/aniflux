@@ -1,8 +1,13 @@
-import clientPromise from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
 
 const dbName = 'aniflux';
 const collectionName = 'users';
+
+// Lazy import to avoid evaluation errors
+async function getClient() {
+  const { default: clientPromise } = await import('@/lib/mongodb');
+  return clientPromise;
+}
 
 /**
  * Create a new user
@@ -11,6 +16,7 @@ const collectionName = 'users';
  */
 export async function createUser(userData) {
   try {
+    const clientPromise = await getClient();
     const client = await clientPromise;
     const db = client.db(dbName);
     
@@ -35,6 +41,7 @@ export async function createUser(userData) {
  */
 export async function findUserByEmail(email) {
   try {
+    const clientPromise = await getClient();
     const client = await clientPromise;
     const db = client.db(dbName);
     const user = await db.collection(collectionName).findOne({ email });
@@ -52,6 +59,7 @@ export async function findUserByEmail(email) {
  */
 export async function findUserById(id) {
   try {
+    const clientPromise = await getClient();
     const client = await clientPromise;
     const db = client.db(dbName);
     const user = await db.collection(collectionName).findOne({ _id: new ObjectId(id) });
@@ -70,6 +78,7 @@ export async function findUserById(id) {
  */
 export async function updateUser(id, updateData) {
   try {
+    const clientPromise = await getClient();
     const client = await clientPromise;
     const db = client.db(dbName);
     
