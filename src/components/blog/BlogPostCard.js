@@ -7,14 +7,14 @@ import { format } from 'date-fns';
 export default function BlogPostCard({ post }) {
   return (
     <Link href={`/blog/${post.slug}`}>
-      <article className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+      <article className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-200 cursor-pointer border border-gray-200">
         {post.featuredImage && (
-          <div className="relative h-48 w-full">
+          <div className="relative h-48 w-full bg-gray-100">
             <Image
               src={post.featuredImage}
               alt={post.title}
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-200 hover:scale-105"
             />
           </div>
         )}

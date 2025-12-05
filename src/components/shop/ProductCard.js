@@ -15,25 +15,25 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-200 border border-gray-200">
       <Link href={`/products/${product._id}`}>
-        <div className="relative h-48 w-full">
+        <div className="relative h-48 w-full bg-gray-100">
           {product.imageUrl ? (
             <Image
               src={product.imageUrl}
               alt={product.name}
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-200 hover:scale-105"
             />
           ) : (
             <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-              <span className="text-gray-400">No Image</span>
+              <span className="text-gray-400 text-sm">No Image</span>
             </div>
           )}
         </div>
       </Link>
       
-      <div className="p-4">
+      <div className="p-5">
         <Link href={`/products/${product._id}`}>
           <h3 className="text-lg font-semibold text-gray-900 mb-2 hover:text-blue-600">
             {product.name}
@@ -46,20 +46,20 @@ export default function ProductCard({ product }) {
           </p>
         )}
         
-        <div className="flex items-center justify-between">
-          <span className="text-xl font-bold text-gray-900">
+        <div className="flex items-center justify-between mt-4">
+          <span className="text-2xl font-bold text-blue-600">
             ${product.price?.toFixed(2)}
           </span>
           {product.stock > 0 ? (
             <Button
               variant="primary"
               onClick={handleAddToCart}
-              className="text-sm"
+              size="sm"
             >
               Add to Cart
             </Button>
           ) : (
-            <span className="text-sm text-red-600 font-medium">Out of Stock</span>
+            <span className="text-sm text-red-600 font-medium px-3 py-1.5">Out of Stock</span>
           )}
         </div>
         

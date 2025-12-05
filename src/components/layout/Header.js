@@ -22,11 +22,11 @@ export default function Header() {
   const isActive = (path) => pathname === path;
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
+    <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
       <nav className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-bold text-blue-600">
+          <Link href="/" className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
             Aniflux
           </Link>
 
@@ -34,16 +34,20 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-6">
             <Link
               href="/products"
-              className={`hover:text-blue-600 transition-colors ${
-                isActive('/products') ? 'text-blue-600 font-medium' : 'text-gray-700'
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                isActive('/products') 
+                  ? 'text-blue-600 bg-blue-50' 
+                  : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
               }`}
             >
               Products
             </Link>
             <Link
               href="/blog"
-              className={`hover:text-blue-600 transition-colors ${
-                isActive('/blog') ? 'text-blue-600 font-medium' : 'text-gray-700'
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                isActive('/blog') 
+                  ? 'text-blue-600 bg-blue-50' 
+                  : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
               }`}
             >
               Blog
