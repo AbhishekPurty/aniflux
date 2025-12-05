@@ -30,8 +30,8 @@ export default async function ProductsPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Our Products</h1>
-        <p className="text-gray-600">Discover our amazing collection</p>
+        <h1 className="text-3xl font-bold text-white mb-2 font-heading">Our Products</h1>
+        <p className="text-gray-400">Discover our amazing collection</p>
       </div>
       
       <ProductGrid products={products} />

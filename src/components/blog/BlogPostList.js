@@ -6,7 +6,7 @@ export default function BlogPostList({ posts }) {
   if (!posts || posts.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-500 text-lg">No blog posts found.</p>
+        <p className="text-gray-400 text-lg">No blog posts found.</p>
       </div>
     );
   }
@@ -19,4 +19,3 @@ export default function BlogPostList({ posts }) {
     </div>
   );
 }
-

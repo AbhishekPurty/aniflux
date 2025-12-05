@@ -1,70 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --secondary: #64748b;
-  --border: #e2e8f0;
-  --muted: #f1f5f9;
+  /* Anime Theme Colors - Primary */
+  --black: #000000;
+  --neon-orange: #FF6B00;
+  --duke-blue: #0033A0;
+  
+  /* Supporting Colors */
+  --white: #FFFFFF;
+  --gunmetal: #1A1A1A;
+  --electric-cyan: #00E9FF;
+  --pinkish-red: #FF1E56;
+  --golden-yellow: #FFD60A;
+  
+  /* Legacy variables for compatibility */
+  --background: #000000;
+  --foreground: #FFFFFF;
+  --primary: #FF6B00;
+  --primary-hover: #FF8533;
+  --secondary: #0033A0;
+  --border: #1A1A1A;
+  --muted: #1A1A1A;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #3b82f6;
-    --primary-hover: #2563eb;
-    --secondary: #94a3b8;
-    --border: #334155;
-    --muted: #1e293b;
-  }
-} */
-
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  color: var(--white);
+  background: var(--black);
+  font-family: 'Roboto', sans-serif;
   line-height: 1.6;
 }
 
-/* Custom scrollbar */
+/* Anime heading styles */
+h1, h2, h3, h4, h5, h6,
+.anime-heading {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+}
+
+/* Custom scrollbar - anime theme */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--muted);
+  background: var(--gunmetal);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--secondary);
+  background: var(--neon-orange);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
+  background: var(--electric-cyan);
 }
 
-/* Prose styles for blog content */
+/* Anime gradient utility */
+.anime-gradient {
+  background: linear-gradient(135deg, #000000 0%, #0033A0 50%, #FF6B00 100%);
+}
+
+/* Neon glow effect */
+.neon-glow {
+  text-shadow: 0 0 10px var(--neon-orange), 0 0 20px var(--neon-orange), 0 0 30px var(--neon-orange);
+}
+
+.cyan-glow {
+  text-shadow: 0 0 10px var(--electric-cyan), 0 0 20px var(--electric-cyan);
+}
+
+/* Prose styles for blog content - keep white background for readability */
 .prose {
-  @apply text-gray-700;
+  @apply text-gray-900;
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 0.5rem;
 }
 
 .prose h1 {
   @apply text-4xl font-bold mb-4 mt-8;
+  font-family: 'Orbitron', sans-serif;
+  color: var(--neon-orange);
 }
 
 .prose h2 {
   @apply text-3xl font-bold mb-3 mt-6;
+  font-family: 'Orbitron', sans-serif;
+  color: var(--duke-blue);
 }
 
 .prose h3 {
   @apply text-2xl font-semibold mb-2 mt-4;
+  font-family: 'Orbitron', sans-serif;
 }
 
 .prose p {
@@ -90,6 +122,11 @@ body {
 
 .prose a {
   @apply text-blue-600 hover:text-blue-800 underline;
+  color: var(--duke-blue);
+}
+
+.prose a:hover {
+  color: var(--electric-cyan);
 }
 
 .prose img {
@@ -97,15 +134,20 @@ body {
 }
 
 .prose blockquote {
-  @apply border-l-4 border-gray-300 pl-4 italic my-4;
+  @apply border-l-4 pl-4 italic my-4;
+  border-color: var(--neon-orange);
 }
 
 .prose code {
-  @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono;
+  @apply px-2 py-1 rounded text-sm font-mono;
+  background: var(--gunmetal);
+  color: var(--electric-cyan);
 }
 
 .prose pre {
-  @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto my-4;
+  @apply p-4 rounded-lg overflow-x-auto my-4;
+  background: var(--gunmetal);
+  color: var(--electric-cyan);
 }
 
 .prose pre code {
@@ -132,7 +174,20 @@ body {
   @apply transition-colors duration-200;
 }
 
-/* Focus styles */
+/* Focus styles - anime theme */
 :focus-visible {
-  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+  @apply outline-none ring-2 ring-offset-2;
+  --tw-ring-color: var(--electric-cyan);
+}
+
+/* Light content areas (for blog, forms, etc.) */
+.light-content {
+  background: var(--white);
+  color: var(--black);
+}
+
+.light-content h1,
+.light-content h2,
+.light-content h3 {
+  color: var(--black);
 }

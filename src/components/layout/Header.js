@@ -22,11 +22,11 @@ export default function Header() {
   const isActive = (path) => pathname === path;
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
+    <header className="bg-black border-b border-anime-gunmetal sticky top-0 z-50 shadow-lg">
       <nav className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
+          <Link href="/" className="text-2xl font-bold text-anime-orange hover:text-anime-cyan transition-colors font-heading">
             Aniflux
           </Link>
 
@@ -34,20 +34,20 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-6">
             <Link
               href="/products"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors font-heading ${
                 isActive('/products') 
-                  ? 'text-blue-600 bg-blue-50' 
-                  : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                  ? 'text-anime-orange bg-anime-gunmetal' 
+                  : 'text-white hover:text-anime-cyan hover:bg-anime-gunmetal'
               }`}
             >
               Products
             </Link>
             <Link
               href="/blog"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors font-heading ${
                 isActive('/blog') 
-                  ? 'text-blue-600 bg-blue-50' 
-                  : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                  ? 'text-anime-orange bg-anime-gunmetal' 
+                  : 'text-white hover:text-anime-cyan hover:bg-anime-gunmetal'
               }`}
             >
               Blog
@@ -56,8 +56,10 @@ export default function Header() {
             {session && (session.role === 'blog_writer' || session.role === 'admin') && (
               <Link
                 href="/admin/blog"
-                className={`hover:text-blue-600 transition-colors ${
-                  isActive('/admin/blog') ? 'text-blue-600 font-medium' : 'text-gray-700'
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors font-heading ${
+                  isActive('/admin/blog') 
+                    ? 'text-anime-orange bg-anime-gunmetal' 
+                    : 'text-white hover:text-anime-cyan hover:bg-anime-gunmetal'
                 }`}
               >
                 Dashboard
@@ -66,11 +68,11 @@ export default function Header() {
 
             <Link
               href="/cart"
-              className="relative hover:text-blue-600 transition-colors text-gray-700"
+              className="relative text-white hover:text-anime-cyan transition-colors font-heading"
             >
               Cart
               {itemCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-anime-cyan text-black text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold shadow-neon-cyan">
                   {itemCount}
                 </span>
               )}
@@ -78,14 +80,14 @@ export default function Header() {
 
             {session ? (
               <div className="flex items-center gap-4">
-                <Link href="/orders">
-                  <span className="text-gray-700 hover:text-blue-600">Orders</span>
+                <Link href="/orders" className="text-white hover:text-anime-cyan transition-colors">
+                  Orders
                 </Link>
-                <span className="text-gray-600">{session.email}</span>
+                <span className="text-gray-400 text-sm">{session.email}</span>
                 <Button
                   variant="outline"
                   onClick={() => signOut({ callbackUrl: '/' })}
-                  className="text-sm"
+                  size="sm"
                 >
                   Logout
                 </Button>
@@ -93,10 +95,10 @@ export default function Header() {
             ) : (
               <div className="flex items-center gap-2">
                 <Link href="/login">
-                  <Button variant="outline" className="text-sm">Login</Button>
+                  <Button variant="outline" size="sm">Login</Button>
                 </Link>
                 <Link href="/register">
-                  <Button variant="primary" className="text-sm">Register</Button>
+                  <Button variant="primary" size="sm">Register</Button>
                 </Link>
               </div>
             )}
@@ -104,7 +106,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2 text-white hover:text-anime-cyan"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -135,12 +137,12 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200">
+          <div className="md:hidden py-4 border-t border-anime-gunmetal">
             <div className="flex flex-col gap-4">
               <Link
                 href="/products"
-                className={`hover:text-blue-600 ${
-                  isActive('/products') ? 'text-blue-600 font-medium' : 'text-gray-700'
+                className={`px-3 py-2 rounded-md font-heading ${
+                  isActive('/products') ? 'text-anime-orange bg-anime-gunmetal' : 'text-white hover:text-anime-cyan'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -148,8 +150,8 @@ export default function Header() {
               </Link>
               <Link
                 href="/blog"
-                className={`hover:text-blue-600 ${
-                  isActive('/blog') ? 'text-blue-600 font-medium' : 'text-gray-700'
+                className={`px-3 py-2 rounded-md font-heading ${
+                  isActive('/blog') ? 'text-anime-orange bg-anime-gunmetal' : 'text-white hover:text-anime-cyan'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -159,8 +161,8 @@ export default function Header() {
               {session && (session.role === 'blog_writer' || session.role === 'admin') && (
                 <Link
                   href="/admin/blog"
-                  className={`hover:text-blue-600 ${
-                    isActive('/admin/blog') ? 'text-blue-600 font-medium' : 'text-gray-700'
+                  className={`px-3 py-2 rounded-md font-heading ${
+                    isActive('/admin/blog') ? 'text-anime-orange bg-anime-gunmetal' : 'text-white hover:text-anime-cyan'
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -170,7 +172,7 @@ export default function Header() {
 
               <Link
                 href="/cart"
-                className="text-gray-700 hover:text-blue-600"
+                className="text-white hover:text-anime-cyan px-3 py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Cart {itemCount > 0 && `(${itemCount})`}
@@ -180,19 +182,20 @@ export default function Header() {
                 <>
                   <Link
                     href="/orders"
-                    className="text-gray-700 hover:text-blue-600"
+                    className="text-white hover:text-anime-cyan px-3 py-2"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Orders
                   </Link>
-                  <span className="text-gray-600">{session.email}</span>
+                  <span className="text-gray-400 text-sm px-3 py-2">{session.email}</span>
                   <Button
                     variant="outline"
                     onClick={() => {
                       signOut({ callbackUrl: '/' });
                       setIsMenuOpen(false);
                     }}
-                    className="text-sm w-full"
+                    size="sm"
+                    className="w-full"
                   >
                     Logout
                   </Button>
@@ -200,10 +203,10 @@ export default function Header() {
               ) : (
                 <div className="flex flex-col gap-2">
                   <Link href="/login" onClick={() => setIsMenuOpen(false)}>
-                    <Button variant="outline" className="text-sm w-full">Login</Button>
+                    <Button variant="outline" size="sm" className="w-full">Login</Button>
                   </Link>
                   <Link href="/register" onClick={() => setIsMenuOpen(false)}>
-                    <Button variant="primary" className="text-sm w-full">Register</Button>
+                    <Button variant="primary" size="sm" className="w-full">Register</Button>
                   </Link>
                 </div>
               )}
@@ -214,4 +217,3 @@ export default function Header() {
     </header>
   );
 }
-

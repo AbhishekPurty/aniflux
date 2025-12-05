@@ -35,7 +35,7 @@ export default function AddToCartButton({ product }) {
     <div className="flex items-center gap-4">
       {product.stock > 0 && (
         <div className="flex items-center gap-2">
-          <label htmlFor="quantity" className="text-sm font-medium text-gray-700">
+          <label htmlFor="quantity" className="text-sm font-medium text-white font-heading">
             Quantity:
           </label>
           <input
@@ -45,7 +45,7 @@ export default function AddToCartButton({ product }) {
             max={maxQuantity}
             value={quantity}
             onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
-            className="w-20 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-20 px-3 py-2 border border-anime-gunmetal rounded-lg bg-anime-gunmetal text-white focus:outline-none focus:ring-2 focus:ring-anime-cyan"
           />
         </div>
       )}
@@ -61,4 +61,3 @@ export default function AddToCartButton({ product }) {
     </div>
   );
 }
-

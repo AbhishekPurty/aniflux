@@ -131,12 +131,12 @@ export default function CheckoutPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Checkout</h1>
+      <h1 className="text-3xl font-bold text-white mb-8 font-heading">Checkout</h1>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
-          <Card>
-            <h2 className="text-xl font-semibold mb-4">Shipping Information</h2>
+          <Card variant="gunmetal">
+            <h2 className="text-xl font-semibold mb-4 text-white font-heading">Shipping Information</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <Input
                 label="Full Name"
@@ -199,26 +199,26 @@ export default function CheckoutPage() {
         </div>
 
         <div className="lg:col-span-1">
-          <Card>
-            <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
+          <Card variant="gunmetal">
+            <h2 className="text-xl font-semibold mb-4 text-white font-heading">Order Summary</h2>
             
             <div className="space-y-2 mb-4">
               {items.map((item) => (
-                <div key={item._id} className="flex justify-between text-sm">
-                  <span className="text-gray-600">
+                <div key={item._id} className="flex justify-between text-sm text-gray-300">
+                  <span>
                     {item.name} x {item.quantity}
                   </span>
-                  <span className="font-medium">
+                  <span className="font-medium text-anime-cyan">
                     ${(item.price * item.quantity).toFixed(2)}
                   </span>
                 </div>
               ))}
             </div>
 
-            <div className="border-t border-gray-200 pt-4 mt-4">
-              <div className="flex justify-between text-lg font-bold">
+            <div className="border-t border-anime-gunmetal pt-4 mt-4">
+              <div className="flex justify-between text-lg font-bold text-white">
                 <span>Total</span>
-                <span>${total.toFixed(2)}</span>
+                <span className="text-anime-cyan font-heading">${total.toFixed(2)}</span>
               </div>
             </div>
           </Card>
@@ -227,4 +227,3 @@ export default function CheckoutPage() {
     </div>
   );
 }
-

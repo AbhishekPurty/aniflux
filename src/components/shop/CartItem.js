@@ -14,9 +14,9 @@ export default function CartItem({ item }) {
   };
 
   return (
-    <div className="flex items-center gap-4 p-4 border-b border-gray-200">
+    <div className="flex items-center gap-4 p-4 border-b border-anime-gunmetal">
       <Link href={`/products/${item._id}`}>
-        <div className="relative w-20 h-20 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
+        <div className="relative w-20 h-20 bg-black rounded-lg overflow-hidden flex-shrink-0">
           {item.imageUrl ? (
             <Image
               src={item.imageUrl}
@@ -26,7 +26,7 @@ export default function CartItem({ item }) {
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center">
-              <span className="text-gray-400 text-xs">No Image</span>
+              <span className="text-gray-500 text-xs">No Image</span>
             </div>
           )}
         </div>
@@ -34,11 +34,11 @@ export default function CartItem({ item }) {
 
       <div className="flex-1 min-w-0">
         <Link href={`/products/${item._id}`}>
-          <h3 className="font-semibold text-gray-900 hover:text-blue-600 truncate">
+          <h3 className="font-semibold text-white hover:text-anime-orange truncate transition-colors font-heading">
             {item.name}
           </h3>
         </Link>
-        <p className="text-sm text-gray-600">${item.price?.toFixed(2)} each</p>
+        <p className="text-sm text-gray-400">${item.price?.toFixed(2)} each</p>
       </div>
 
       <div className="flex items-center gap-3">
@@ -50,7 +50,7 @@ export default function CartItem({ item }) {
           >
             -
           </Button>
-          <span className="w-12 text-center font-medium">{item.quantity}</span>
+          <span className="w-12 text-center font-medium text-white">{item.quantity}</span>
           <Button
             variant="outline"
             onClick={() => handleQuantityChange(item.quantity + 1)}
@@ -62,7 +62,7 @@ export default function CartItem({ item }) {
         </div>
 
         <div className="w-24 text-right">
-          <p className="font-semibold text-gray-900">
+          <p className="font-semibold text-anime-cyan font-heading">
             ${(item.price * item.quantity).toFixed(2)}
           </p>
         </div>
@@ -78,4 +78,3 @@ export default function CartItem({ item }) {
     </div>
   );
 }
-
